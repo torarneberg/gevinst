@@ -747,7 +747,7 @@ for i, (h, t) in enumerate(items):
 notes(s, 'Dette er forbedringer av selve gevinstoppfølgingen, slik at neste rapport kan si noe om måloppnåelse og ikke bare utvikling.')
 
 # 19 Tiltak
-s = dark_slide('Anbefalte tiltak', 'Forslag til eier er veiledende og må avklares i linjen')
+s = dark_slide('Anbefalte tiltak', 'Forslag til eier er veiledende og må avklares i linjen. Tiltak 8–10 (uthevet) er nye etter innspill fra produkteier i R2.')
 rows = [['#', 'Tiltak', 'Adresserer', 'Forslag til eier', 'Når'],
         ['1', 'Eget forbedringsløp for Tilsyn: arbeidsflyt for inspeksjoner, frist- og oppgavestøtte, stabilitet. Avklar om gevinstene for Tilsyn er realistiske.', 'R1 kvalitet, tilfredshet', 'Prosjekteier og leder Tilsyn', 'Q4 2026'],
         ['2', 'Få alle relevante sakstyper, prosedyrer og presaker inn i DELE, og legg ned parallelle lister og verktøy.', 'R2 effektivitet, frister, spredning', 'Produkteier DELE og fagledere', '2027'],
@@ -756,12 +756,19 @@ rows = [['#', 'Tiltak', 'Adresserer', 'Forslag til eier', 'Når'],
         ['5', 'Avtal felles bruksregler: oppgaver markeres som fullført, og samhandling skjer i DELE. Etabler superbrukere per fagområde.', 'Intern samhandling, status', 'Enhetsledere', 'Løpende'],
         ['6', 'Bedre tilgangen til faglig informasjon (tidsskrifter, databaser, dokumentflyt i Dokubridge og SharePoint).', 'Finne faglig info, kvalitet', 'Linjen og IKT', '2027'],
         ['7', 'Avklar ekstern samhandling: Hvilken funksjonalitet i DELE skal gi gevinsten? Hvis ingen, bør gevinsten tas ut av planen eller flyttes.', 'Ekstern samhandling R1/R2', 'Gevinsteier', 'Q4 2026'],
+        ['8', 'Obligatorisk opplæring i flere runder: felles grunnopplæring sentralt (oppgavelister, lister og visninger, kobling til SharePoint) og fagspesifikk opplæring i brukermiljøene.', 'Enkle å bruke, spredning, effektivitet', 'Produkteier DELE og linjeledere', 'Q1 2027'],
+        ['9', 'Endringsledelse i linjen: ledere beslutter felles arbeidsmåte (oppgaver i stedet for e-post, frister i DELE), bruker selv DELE i oppfølgingen og følger opp oppgaver over frist.', 'Parallelle systemer, frister, ledere', 'Ledergruppen og enhetsledere', 'Q4 2026, løpende'],
+        ['10', 'Bruksdata fra Dynamics som ny måleindikator: aktive brukere, oppgaver over frist og oppgaver lukket samlet, per fagområde.', 'Gevinstmålingen', 'Gevinsteier og produkteier DELE', 'Q1 2027'],
         ]
 cw = [0.3, 4.6, 1.75, 1.6, 0.8]
-table(s, 0.47, 1.15, sum(cw), cw, rows, row_h=0.5, size=8, body_fill=None)
+NEW = RGBColor(0x45, 0x50, 0x2A)
+fills = [[None] * 5] + [[NEW if i >= 8 else None] * 5 for i in range(1, len(rows))]
+table(s, 0.47, 1.1, sum(cw), cw, rows, row_h=0.37, size=8, body_fill=None, fills=fills)
 notes(s, 'Tiltak 1 og 2 er viktigst for gevinstrealiseringen. Tiltak 1 fordi R1-gevinstene ikke realiseres i Tilsyn. '
          'Tiltak 2 fordi DELE ikke kan gi full gevinst så lenge saksbehandlingen er delt mellom DELE og andre verktøy. '
-         'Tiltak 7 handler om realisme i gevinstplanen.')
+         'Tiltak 7 handler om realisme i gevinstplanen. '
+         'Tiltak 8–10 er lagt til etter innspill fra produkteier i R2: det har ikke vært styrt opplæring etter go-live, mange bruker fortsatt gamle verktøy, og mellomledere bruker i liten grad DELE. '
+         'Innspillet samsvarer med fritekst og med lave skårer for ledere. Bruksdata fra Dynamics kan bekrefte eller avkrefte hvor utbredt problemet er.')
 
 # 20 Beslutninger
 s = content_slide('Forslag til beslutninger for prosjekteier og porteføljestyret')
