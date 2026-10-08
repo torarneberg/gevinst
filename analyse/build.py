@@ -34,6 +34,8 @@ STATUS = {  # fill, text
     'Uendret': (CREAM, DARK),
     'Negativ': (ORANGE, DARK),
     'Ikke dokumentert': (GREY, WHITE),
+    'Spriker': (LAV, DARK),
+    'Lavt nivå': (CREAM, DARK),
 }
 
 
@@ -672,6 +674,47 @@ tb(s, 0.47, 4.55, 9.06, 0.8, [
 notes(s, 'Den som har krysset av for flere fagområder, telles i hvert av dem. Kvalitet kjemisk og biologisk er slått sammen, og Preklinikk, farmakologi og VET er slått sammen, for å få minst 5 svar per gruppe. '
          'Regulatorisk etter MT: snittet for å arbeide effektivt falt fra 3,6 til 3,0 og for enkle å bruke fra 3,9 til 3,3 (n 13 → 7). Dette bør følges opp i dialog med fagområdet. '
          'Effekt – HUM: lavest på frister (2,9) og prioritering (2,7). Fritekst herfra peker på at presaker mangler i DELE og at tidslinjer ikke stemmer.')
+
+# 13b R2 fagområder som skiller seg ut
+s = dark_slide('R2: Størst gevinst der sakene ligger i DELE og brukerne er vant til det',
+               'Fagområdene som skiller seg mest ut, 2025 → 2026. * = statistisk sikker (p < 0,05), øvrige er tendenser.')
+rows = [['Fagområde', 'n 25 / 26', 'Retning', 'Hva skiller seg ut', 'Fritekst fra fagområdet']]
+fo = [
+    ('Preklinikk, farmakologi og VET', '11 / 12', 'Positiv',
+     'Høyest nivå (4,2). Enkle å bruke 3,8 → 4,7*, intern samhandling +0,9, arbeide effektivt +0,7.',
+     'Støtter: «Dele er top». Savner dokumentasjon etter at Kastor ble faset ut (utenfor DELE).'),
+    ('Sikkerhet – HUM', '9 / 11', 'Positiv',
+     'Frister 3,4 → 4,7, faglig støtte 3,3 → 4,5, oversikt over oppgaver 4,1 → 4,9.',
+     'Delvis: DELE «brukes feil og alt for lite», mye skjer i parallelle verktøy. To tolket «verktøy» som også KI og IRIS.'),
+    ('Kvalitet (kjemisk/biologisk)', '11 / 9', 'Spriker',
+     'Prioritering 2,5 → 3,7 og frister 2,8 → 3,8, men uenige på «enkle å bruke» økte fra 0 % til 33 %.',
+     'Støtter begge deler: «svært tungvint … unødvendig mange klikk». Fornøyde brukere savner flere prosedyrer i DELE.'),
+    ('Regulatorisk produktinformasjon', '15 / 12', 'Spriker',
+     'Snitt uendret (3,9). Enkle å bruke 4,9 → 3,8* (enige 80 % → 33 %), mens frister økte 3,8 → 4,4.',
+     'Støtter: «For de av oss som bruker systemet i mindre grad er det veldig uoversiktlig … stor tidstyv».'),
+    ('Effekt – HUM', '11 / 7', 'Lavt nivå',
+     'Lavest snitt (3,3). Frister 2,9 og prioritering 2,7. Uenige på «enkle å bruke» økte fra 0 % til 29 %.',
+     'Støtter tydelig: presaker mangler i DELE, «veldig mange parallelle systemer», frister og tidslinjer er ikke korrekte.'),
+    ('Regulatorisk etter MT', '13 / 7', 'Negativ',
+     'Ned på 9 av 12 spørsmål (3,8 → 3,4). Uenige på «arbeide effektivt» 15 % → 43 %. Enkle å bruke 3,9 → 3,3.',
+     'Ingen fritekst. Antall svar er nesten halvert, så årsaken bør avklares i dialog med fagområdet.'),
+]
+for r in fo:
+    rows.append([r[0], r[1], '', r[3].replace(' %', '\u00a0%'), r[4]])
+cw = [1.75, 0.6, 0.95, 2.9, 2.86]
+rh = 0.58
+ft = table(s, 0.47, 1.15, sum(cw), cw, rows, row_h=rh, size=8, body_fill=None,
+      aligns=[PP_ALIGN.LEFT, PP_ALIGN.CENTER, PP_ALIGN.CENTER, PP_ALIGN.LEFT, PP_ALIGN.LEFT])
+ft.rows[0].height = Inches(0.3)
+for i, r in enumerate(fo):
+    chip(s, 0.47 + sum(cw[:2]) + 0.06, 1.15 + 0.3 + rh * i + (rh - 0.22) / 2 + 0.01, cw[2] - 0.12, 0.22, r[2], size=7)
+notes(s, 'Mønsteret på tvers: Der alle relevante saker ligger i DELE og brukerne bruker systemet ofte, gir det gevinst på oversikt og styring '
+         '(Preklinikk/farmakologi/VET, Sikkerhet – HUM). Der saker mangler i DELE eller brukerne bruker det sjelden, faller brukervennligheten '
+         'og de parallelle systemene lever videre (Regulatorisk produktinformasjon, Effekt – HUM). '
+         'Bare to endringer er statistisk sikre: «enkle å bruke» opp i Preklinikk/farmakologi/VET (p = 0,01) og ned i Regulatorisk produktinformasjon (p = 0,02). '
+         'Endringene i Sikkerhet – HUM og Kvalitet er nær sikre (p ≈ 0,08–0,10). Nedgangen i Regulatorisk etter MT er ikke sikker (p ≈ 0,3–0,45), og antall svar falt fra 13 til 7. '
+         'Fritekst fra Sikkerhet – HUM viser at noen tolket «verktøy» som også KI og IRIS, så noe av økningen i faglig støtte kan skyldes andre verktøy enn DELE. '
+         'Tilbakemeldingen fra produkteier i R2 om manglende opplæring passer med fallet i brukervennlighet i Regulatorisk produktinformasjon.')
 
 # 14 Ledere vs saksbehandlere
 s = content_slide('Enhetsledere opplever mindre oversikt og styringsstøtte',
